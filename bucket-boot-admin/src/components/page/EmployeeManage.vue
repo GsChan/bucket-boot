@@ -1,0 +1,260 @@
+<template>
+    <div class="table">
+        <div class="crumbs">
+            <el-breadcrumb separator-class="el-icon-arrow-right">
+                <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                <el-breadcrumb-item>权限管理</el-breadcrumb-item>
+                <el-breadcrumb-item>员工管理</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+        <div class="container">
+            <div class="handle-box">
+                <el-form ref="form" :model="searchParams" label-width="60px">
+                    <el-row :gutter="15">
+                        <el-col :span="6">
+                            <el-form-item label="登陆ID:">
+                                <el-input v-model="searchParams.loginName" placeholder="登陆ID"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="6">
+                            <el-button type="primary" icon="search" @click="search">查询</el-button>
+                        </el-col>
+                    </el-row>
+                </el-form>
+
+                <el-row>
+                    <el-col >
+                        <el-button type="primary" icon="search" @click="showAddDialog">新增</el-button>
+                    </el-col>
+                </el-row>
+            </div>
+            <el-table :data="employeeDatas" stripe class="table" ref="employeeTable" @selection-change="handleSelectionChange">
+                <el-table-column
+                    label="选择"
+                    width="50">
+                    <template slot-scope="scope">
+                        <el-radio v-model="currentEmployee" :label="scope.row.loginName"><i></i></el-radio>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    label="序号"
+                    width="70"
+                    type="index">
+                </el-table-column>
+                <el-table-column prop="loginName" label="登陆ID" width="150px">
+                </el-table-column>
+                <el-table-column prop="empNo" label="员工编号" width="150px">
+                </el-table-column>
+                <el-table-column prop="empName" label="员工姓名"  width="150px">
+                </el-table-column>
+                <el-table-column prop="sex" label="性别" width="70px">
+                    <template slot-scope="scope">
+                        {{ scope.row.sex === '0' ? '男' : '女'}}
+                    </template>
+                </el-table-column>
+                <el-table-column prop="tel" label="电话" width="150px">
+                </el-table-column>
+                <el-table-column prop="email" label="邮箱" width="150px" >
+                </el-table-column>
+                <el-table-column prop="empStatus" label="是否有效" width="100px">
+                    <template slot-scope="scope">
+                        {{ scope.row.empStatus === '0' ? '无效' : '有效'}}
+                    </template>
+                </el-table-column>
+                <el-table-column prop="isFrozen" label="是否锁定" width="100px">
+                    <template slot-scope="scope">
+                        {{ scope.row.isFrozen === '0' ? '否' : '是'}}
+                    </template>
+                </el-table-column>
+                <el-table-column prop="createTime" :formatter="dateFormatter" label="创建时间" width="180px">
+                </el-table-column>
+                <el-table-column prop="updateTime" :formatter="dateFormatter" label="修改时间" width="auto">
+                </el-table-column>
+            </el-table>
+            <div class="pagination">
+                <el-pagination background
+                    @current-change="handleCurrentChange"
+                    @size-change="handleSizeChange"
+                    :current-page="pageNum"
+                    :page-sizes="[10, 20, 30, 50, 100]"
+                    :page-size="pageSize"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="total">
+                </el-pagination>
+            </div>
+        </div>
+
+
+        <!-- 新增模拟弹出框 -->
+        <el-dialog title="添加员工" :visible.sync="addVisible" width="30%">
+            <el-form ref="addEmployeeForm" :model="employeeForm" :rules="employeeValdateRules" label-position="left" label-width="80px">
+                <el-form-item label="登陆ID" prop="loginName">
+                    <el-input v-model="employeeForm.loginName"></el-input>
+                </el-form-item>
+                <el-form-item label="员工编号" prop="empNo">
+                    <el-input v-model="employeeForm.empNo"></el-input>
+                </el-form-item>
+                <el-form-item label="姓名" prop="empName">
+                    <el-input v-model="employeeForm.empName"></el-input>
+                </el-form-item>
+                <el-form-item label="性别" prop="sex">
+                    <el-radio-group v-model="employeeForm.sex">
+                        <el-radio label="0">男</el-radio>
+                        <el-radio label="1">女</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="电话" prop="tel">
+                    <el-input v-model="employeeForm.tel"></el-input>
+                </el-form-item>
+                <el-form-item label="邮箱" prop="email">
+                    <el-input v-model="employeeForm.email"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="cancelAddEmployee">取 消</el-button>
+                <el-button type="primary" @click="saveEmployee('addEmployeeForm')">确 定</el-button>
+            </span>
+        </el-dialog>
+
+    </div>
+</template>
+
+<script>
+
+    import {postRequest} from '../../utils/api'
+    import {getRequest} from '../../utils/api'
+    import {putRequest} from '../../utils/api'
+    import {deleteRequest} from '../../utils/api'
+
+
+    export default {
+        name: 'basetable',
+        data() {
+            return {
+                currentEmployee: '',
+                employeeDatas: [],
+                total: 0,
+                pageNum: 1,
+                pageSize: 10,
+                multipleSelection: [],
+                searchParams: {},
+                addVisible:false,
+                employeeForm: {
+                },
+                employeeValdateRules: {
+                    loginName: [
+                        { required: true, message: '请输入登陆ID', trigger: 'blur' }
+                    ],
+                    empNo: [
+                        { required: true, message: '请输入员工编号', trigger: 'blur' }
+                    ],
+                    empName: [
+                        { required: true, message: '请输入员工姓名', trigger: 'blur' }
+                    ],
+                    sex: [
+                        { required: true, message: '请输入选择性别', trigger: 'change' }
+                    ],
+                    tel: [
+                        { required: true, message: '请输入员工电话', trigger: 'blur' },
+                        { pattern: '(^(\d{3,4}-)?\d{7,8})$|(1[0-9]{10})', message: '输入的电话格式错误', trigger: 'blur' }
+                    ],
+                    email: [
+                        { required: true, message: '请输入员工邮箱', trigger: 'blur' },
+                        { type: 'email', message: '输入的邮箱格式错误', trigger: 'blur' }
+                    ]
+                }
+            }
+        },
+        created() {
+            this.getData();
+        },
+        computed: {
+        },
+        methods: {
+            dateFormatter(row, column, cellValue, index) {
+                return this.$moment(new Date(cellValue)).format("YYYY-MM-DD HH:mm:ss")
+            },
+            // 分页导航
+            handleCurrentChange(val) {
+                this.pageNum = val;
+                this.getData();
+            },
+            handleSizeChange(val) {
+                this.pageSize = val;
+                this.getData();
+            },
+            // 获取 列表
+            getData() {
+                this.searchParams.pageSize = this.pageSize
+                this.searchParams.pageNum = this.pageNum
+                getRequest("/employee/get/list", this.searchParams).then((res) => {
+                    this.employeeDatas = res.data.data
+                    this.total = res.data.total
+                }).catch(function (error) {
+                    this.$message.error('获取员工列表失败')
+                })
+            },
+            search() {
+                this.getData();
+            },
+            showAddDialog(index, row) {
+                this.addVisible = true;
+            },
+            handleSelectionChange(val) {
+                this.multipleSelection = val;
+            },
+            cancelAddEmployee() {
+                this.addVisible = false;
+                this.employeeForm = {};
+            },
+            // 保存新增
+            saveEmployee(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        this.$message.success("s")
+                    } else {
+                        this.$message.error("error")
+                        return false;
+                    }
+                });
+                postRequest("/employee/add", this.employeeForm).then((res) => {
+                    if (res.data.success) {
+                        this.$message.success("添加员工完成");
+                        this.addVisible = false;
+                        this.getData();
+                    } else {
+                        this.$message.error("新增失败");
+                    }
+                })
+
+            }
+        }
+    }
+
+</script>
+
+<style scoped>
+    .handle-box {
+        margin-bottom: 20px;
+    }
+
+    .handle-select {
+        width: 120px;
+    }
+
+    .handle-input {
+        width: 300px;
+        display: inline-block;
+    }
+    .del-dialog-cnt{
+        font-size: 16px;
+        text-align: center
+    }
+    .table{
+        width: 100%;
+        font-size: 14px;
+    }
+    .red{
+        color: #ff0000;
+    }
+</style>

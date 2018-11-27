@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { MessageBox } from 'element-ui';
 
-let base = 'http://10.104.111.89:18080';
+let base = 'http://127.0.0.1:8081/admin-server';
 export const postRequest = (url, params) => {
     return axios({
         method: 'post',

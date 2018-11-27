@@ -49,8 +49,8 @@
                         title: '权限管理',
                         subs: [{
                             icon: 'el-icon-lx-cascades',
-                            index: 'userManage',
-                            title: '用户管理'
+                            index: 'employeeManage',
+                            title: '员工管理'
                         },{
                             icon: 'el-icon-lx-cascades',
                             index: 'roleManage',

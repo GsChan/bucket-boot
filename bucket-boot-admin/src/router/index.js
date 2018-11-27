@@ -23,7 +23,12 @@ export default new Router({
                     path: '/tabs',
                     component: resolve => require(['../components/page/Tabs.vue'], resolve),
                     meta: { title: '消息中心' }
-                }
+                },
+                {
+                    path: '/employeeManage',
+                    component: resolve => require(['../components/page/EmployeeManage.vue'], resolve),
+                    meta: { title: '员工管理' }
+                },
             ]
         },
         {
