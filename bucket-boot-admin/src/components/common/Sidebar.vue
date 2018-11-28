@@ -45,8 +45,8 @@
                     },
                     {
                         icon: 'el-icon-lx-cascades',
-                        index: 'authManage',
-                        title: '权限管理',
+                        index: 'systemManage',
+                        title: '系统管理',
                         subs: [{
                             icon: 'el-icon-lx-cascades',
                             index: 'employeeManage',

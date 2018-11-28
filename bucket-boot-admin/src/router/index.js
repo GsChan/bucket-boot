@@ -10,23 +10,6 @@ export default new Router({
             redirect: '/dashboard'
         },
         {
-            path: '/',
-            component: resolve => require(['../components/common/Home.vue'], resolve),
-            meta: { title: '自述文件' },
-            children:[
-                {
-                    path: '/dashboard',
-                    component: resolve => require(['../components/page/Dashboard.vue'], resolve),
-                    meta: { title: '系统首页' }
-                },
-                {
-                    path: '/employeeManage',
-                    component: resolve => require(['../components/page/EmployeeManage.vue'], resolve),
-                    meta: { title: '员工管理' }
-                },
-            ]
-        },
-        {
             path: '/login',
             component: resolve => require(['../components/page/Login.vue'], resolve)
         },
@@ -37,6 +20,23 @@ export default new Router({
         {
             path: '/404',
             component: resolve => require(['../components/page/404.vue'], resolve)
+        },
+        {
+            path: '/',
+            component: resolve => require(['../components/common/Home.vue'], resolve),
+            meta: { title: 'home' },
+            children:[
+                {
+                    path: '/dashboard',
+                    component: resolve => require(['../components/page/Dashboard.vue'], resolve),
+                    meta: { title: '系统首页' }
+                },
+                {
+                    path: '/employeeManage',
+                    component: resolve => require(['../components/page/system/EmployeeManage.vue'], resolve),
+                    meta: { title: '员工管理' }
+                },
+            ]
         },
         {
             path: '*',
