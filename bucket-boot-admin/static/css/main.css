@@ -188,4 +188,11 @@ a {
 .noText {
     width: 100% !important;
 }
-
+.content .table-wrapper {
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0 2px 3px 0 #ddd;
+}
+.pagination {
+    text-align: left;
+}

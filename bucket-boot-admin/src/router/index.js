@@ -20,11 +20,6 @@ export default new Router({
                     meta: { title: '系统首页' }
                 },
                 {
-                    path: '/tabs',
-                    component: resolve => require(['../components/page/Tabs.vue'], resolve),
-                    meta: { title: '消息中心' }
-                },
-                {
                     path: '/employeeManage',
                     component: resolve => require(['../components/page/EmployeeManage.vue'], resolve),
                     meta: { title: '员工管理' }
@@ -34,6 +29,14 @@ export default new Router({
         {
             path: '/login',
             component: resolve => require(['../components/page/Login.vue'], resolve)
+        },
+        {
+            path: '/403',
+            component: resolve => require(['../components/page/403.vue'], resolve)
+        },
+        {
+            path: '/404',
+            component: resolve => require(['../components/page/404.vue'], resolve)
         },
         {
             path: '*',

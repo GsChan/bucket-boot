@@ -13,6 +13,31 @@ Vue.use(ElementUI);
 Vue.prototype.$axios = axios;
 Vue.prototype.$moment = moment;
 
+/**
+ * element-ui hack
+ */
+Vue.prototype.$message.success = (str) => {
+    Vue.prototype.$message({
+      type: 'success',
+      message: str,
+      showClose: true
+    })
+}
+Vue.prototype.$message.warning = (str) => {
+Vue.prototype.$message({
+    type: 'warning',
+    message: str,
+    showClose: true
+})
+}
+Vue.prototype.$message.error = (str) => {
+Vue.prototype.$message({
+    type: 'error',
+    message: str,
+    showClose: true
+})
+}
+
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
     const role = localStorage.getItem('ms_username');
