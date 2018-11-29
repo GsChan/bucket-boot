@@ -3,7 +3,7 @@
         <div class="crumbs">
             <el-breadcrumb separator-class="el-icon-arrow-right">
                 <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                <el-breadcrumb-item>权限管理</el-breadcrumb-item>
+                <el-breadcrumb-item>系统管理</el-breadcrumb-item>
                 <el-breadcrumb-item>员工管理</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
@@ -76,9 +76,9 @@
                     <el-pagination background
                         @current-change="handleCurrentChange"
                         @size-change="handleSizeChange"
-                        :current-page="pageNum"
+                        :current-page="searchParams.pageNum"
                         :page-sizes="[10, 20, 30, 50, 100]"
-                        :page-size="pageSize"
+                        :page-size="searchParams.pageSize"
                         layout="total, sizes, prev, pager, next, jumper"
                         :total="total">
                     </el-pagination>
@@ -89,8 +89,11 @@
 
 
         <!-- 新增模拟弹出框 -->
-        <el-dialog title="添加员工" :visible.sync="addVisible" width="30%">
-            <el-form ref="addEmployeeForm" :model="employeeForm" :rules="employeeValdateRules" label-position="left" label-width="80px">
+        <el-dialog :visible.sync="addVisible" width="30%">
+            <div slot="title" class="admin-dialog__title">
+                <h2>添加员工</h2>
+            </div>
+            <el-form ref="addEmployeeForm" :model="employeeForm" :rules="employeeValdateRules" label-width="80px">
                 <el-form-item label="登陆ID" prop="loginName">
                     <el-input v-model="employeeForm.loginName"></el-input>
                 </el-form-item>
@@ -123,8 +126,11 @@
         </el-dialog>
 
         <!-- 编辑模拟弹出框 -->
-        <el-dialog title="修改员工信息" :visible.sync="editVisible" @closed="cancelEditEmployee" width="30%">
-            <el-form ref="editEmployeeForm" :model="employeeForm" :rules="employeeValdateRules" label-position="left" label-width="80px">
+        <el-dialog :visible.sync="editVisible" @closed="cancelEditEmployee" width="30%">
+            <div slot="title" class="admin-dialog__title">
+                <h2>修改员工信息</h2>
+            </div>
+            <el-form ref="editEmployeeForm" :model="employeeForm" :rules="employeeValdateRules" label-width="80px">
                 <el-form-item label="登陆ID" prop="loginName">
                     <el-input v-model="employeeForm.loginName"></el-input>
                 </el-form-item>
@@ -164,16 +170,17 @@
     import {deleteRequest} from '../../../utils/api'
 
     export default {
-        name: 'basetable',
+        name: 'employeeManage',
         data() {
             return {
                 currentEmployee: null,
                 employeeDatas: [],
                 total: 0,
-                pageNum: 1,
-                pageSize: 10,
                 multipleSelection: [],
-                searchParams: {},
+                searchParams: {
+                    pageNum: 1,
+                    pageSize: 10
+                },
                 addVisible: false,
                 editVisible: false,
                 employeeForm: {
@@ -219,18 +226,16 @@
             },
             // 分页导航
             handleCurrentChange(val) {
-                this.pageNum = val;
+                this.searchParams.pageNum = val;
                 this.getData();
             },
             handleSizeChange(val) {
-                this.pageSize = val;
+                this.searchParams.pageSize = val;
                 this.getData();
             },
             // 获取 列表
             getData() {
                 var that = this;
-                this.searchParams.pageSize = this.pageSize
-                this.searchParams.pageNum = this.pageNum
                 getRequest("/employee/get/list", this.searchParams).then((res) => {
                     this.employeeDatas = res.data.data
                     this.total = res.data.total

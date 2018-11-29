@@ -41,7 +41,7 @@
                     {
                         icon: 'el-icon-lx-home',
                         index: 'dashboard',
-                        title: '系统首页'
+                        title: '首页'
                     },
                     {
                         icon: 'el-icon-lx-cascades',
@@ -55,6 +55,10 @@
                             icon: 'el-icon-lx-cascades',
                             index: 'roleManage',
                             title: '角色管理'
+                        },{
+                            icon: 'el-icon-lx-cascades',
+                            index: 'authManage',
+                            title: '权限管理'
                         }]
                     }
                 ]

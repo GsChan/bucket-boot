@@ -196,3 +196,25 @@ a {
 .pagination {
     text-align: left;
 }
+.el-dialog__body {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.admin-dialog__title {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+.admin-dialog__title h2 {
+    color: #409eff;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: bolder;
+    border-left: 2px solid #409eff;
+    padding-left: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}

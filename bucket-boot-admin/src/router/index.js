@@ -29,13 +29,18 @@ export default new Router({
                 {
                     path: '/dashboard',
                     component: resolve => require(['../components/page/Dashboard.vue'], resolve),
-                    meta: { title: '系统首页' }
+                    meta: { title: '首页' }
                 },
                 {
                     path: '/employeeManage',
                     component: resolve => require(['../components/page/system/EmployeeManage.vue'], resolve),
                     meta: { title: '员工管理' }
                 },
+                {
+                    path: '/authManage',
+                    component: resolve => require(['../components/page/system/authorityManage.vue'], resolve),
+                    meta: { title: '权限管理' }
+                }
             ]
         },
         {
