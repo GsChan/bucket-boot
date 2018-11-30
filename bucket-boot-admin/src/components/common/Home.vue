@@ -20,6 +20,21 @@
     import vSidebar from './Sidebar.vue';
     import vTags from './Tags.vue';
     import bus from './bus';
+
+    const handleMessage = function(event) {
+        const {data} = event;
+        switch(data.type) {
+            case 'NO_LOGIN':
+                location.assign('/#/login')
+                break;
+            case 'NO_PERMISSION':
+                this.$message.warn("没有执行该操作的权限")
+                break;
+            default:
+        }
+    }
+    let handler = null;
+
     export default {
         data(){
             return {
@@ -43,6 +58,18 @@
                 }
                 this.tagsList = arr;
             })
+        },
+        mounted() {
+            // 注册addEventListener
+            handler = handleMessage.bind(this)
+            window.addEventListener('message', handler, false)
+        },
+        destroyed() {
+            if (!handler) {
+                return;
+            }
+            window.removeEventListener('meesage', handler)
+            handler = null
         }
     }
 </script>

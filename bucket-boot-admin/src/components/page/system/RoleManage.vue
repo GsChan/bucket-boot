@@ -137,11 +137,8 @@
 
 <script>
 
-    import {postRequest} from '../../../utils/api'
-    import {getRequest} from '../../../utils/api'
-    import {putRequest} from '../../../utils/api'
-    import {deleteRequest} from '../../../utils/api'
-    import mockData from '../../../mock/data.js'
+    import {roleApi} from '@/service/api'
+    import mockData from '@/mock/data.js'
 
     export default {
         name: 'roleManage',

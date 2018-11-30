@@ -34,7 +34,8 @@ Vue.prototype.$message.error = (str) => {
 Vue.prototype.$message({
     type: 'error',
     message: str,
-    showClose: true
+    showClose: true,
+    duration: 0
 })
 }
 

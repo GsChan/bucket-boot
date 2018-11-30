@@ -237,12 +237,9 @@
 
 <script>
 
-    import {postRequest} from '../../../utils/api'
-    import {getRequest} from '../../../utils/api'
-    import {putRequest} from '../../../utils/api'
-    import {deleteRequest} from '../../../utils/api'
+    import {authApi} from '@/service/api'
     import ElTableTreeColumn  from 'element-tree-grid'
-    import mockData from '../../../mock/data.js'
+    import mockData from '@/mock/data.js'
 
     export default {
         name: 'authManage',

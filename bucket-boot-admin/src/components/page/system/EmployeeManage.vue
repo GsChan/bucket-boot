@@ -164,10 +164,7 @@
 
 <script>
 
-    import {postRequest} from '../../../utils/api'
-    import {getRequest} from '../../../utils/api'
-    import {putRequest} from '../../../utils/api'
-    import {deleteRequest} from '../../../utils/api'
+    import {employeeApi} from '@/service/api.js'
 
     export default {
         name: 'employeeManage',
@@ -236,7 +233,7 @@
             // 获取 列表
             getData() {
                 var that = this;
-                getRequest("/employee/get/list", this.searchParams).then((res) => {
+                employeeApi.getEmployees(this.searchParams).then((res) => {
                     this.employeeDatas = res.data.data
                     this.total = res.data.total
                 })
@@ -265,7 +262,7 @@
             saveEmployee(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        postRequest("/employee/add", this.employeeForm).then((res) => {
+                        employeeApi.saveEmployees(this.employeeForm).then((res) => {
                             if (res.data.success) {
                                 this.$message.success("添加员工完成");
                                 this.addVisible = false;
