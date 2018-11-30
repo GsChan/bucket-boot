@@ -58,9 +58,9 @@
                     </el-table-column>
                     <el-table-column prop="authType" label="权限类型" width="120" align="center">
                         <template slot-scope="scope">
-                            <el-tag v-if="scope.row.authType === '0'">目录</el-tag>
-                            <el-tag v-else-if="scope.row.authType === '1'" type="success">菜单</el-tag>
-                            <el-tag v-else type="warning">按钮</el-tag>
+                            <el-tag v-if="scope.row.authType === '0'" type="success">目录</el-tag>
+                            <el-tag v-else-if="scope.row.authType === '1'" type="warning">菜单</el-tag>
+                            <el-tag v-else>按钮</el-tag>
                         </template>
                     </el-table-column>
                     <el-table-column prop="authStatus" label="是否可用" width="120" align="center">
@@ -88,7 +88,8 @@
         </div>
 
         <!-- 新增模拟弹出框 -->
-        <el-dialog :visible.sync="addVisible" width="40%">
+        <el-dialog :visible.sync="addVisible"
+            width="40%">
             <div slot="title" class="admin-dialog__title">
                 <h2>添加权限</h2>
             </div>
@@ -241,6 +242,7 @@
     import {putRequest} from '../../../utils/api'
     import {deleteRequest} from '../../../utils/api'
     import ElTableTreeColumn  from 'element-tree-grid'
+    import mockData from '../../../mock/data.js'
 
     export default {
         name: 'authManage',
@@ -287,72 +289,7 @@
             },
             // 获取 列表
             getData() {
-                this.authorityDatas = [
-                    {
-                        "authName": "系统管理",
-                        "authcode": "100000000",
-                        "authType": "0",
-                        "authUrl": "",
-                        "authStatus": "1",
-                        "authIsShow": "1",
-                        "collapsed": "1",
-                        "authDesc": "",
-                        "parentCode": null,
-                        "level": 0,
-                        "children": [
-                            {
-                                "authName": "员工信息",
-                                "authcode": "100100000",
-                                "authType": "1",
-                                "authUrl": "/employeeManage",
-                                "authStatus": "1",
-                                "authIsShow": "1",
-                                "collapsed": "1",
-                                "authDesc": "",
-                                "parentCode": "100000000",
-                                "level": 1,
-                                "children": [
-                                    {
-                                        "authName": "新建",
-                                        "authcode": "100100100",
-                                        "authType": "2",
-                                        "authUrl": "/employee/add",
-                                        "authStatus": "0",
-                                        "authIsShow": "0",
-                                        "collapsed": "0",
-                                        "authDesc": "",
-                                        "parentCode": "100100000",
-                                        "level": 2,
-                                    },
-                                    {
-                                        "authName": "修改",
-                                        "authcode": "100100200",
-                                        "authType": "2",
-                                        "authUrl": "/employee/add",
-                                        "authStatus": "1",
-                                        "authIsShow": "1",
-                                        "collapsed": "1",
-                                        "authDesc": "",
-                                        "parentCode": "100100000",
-                                        "level": 2,
-                                    }
-                                ]
-                            },
-                            {
-                                "authName": "角色信息",
-                                "authcode": "1200000",
-                                "authType": "1",
-                                "authUrl": "/employeeManage",
-                                "authStatus": "1",
-                                "authIsShow": "1",
-                                "collapsed": "1",
-                                "authDesc": "",
-                                "parentCode": "100000000",
-                                "level": 1,
-                            }
-                        ]
-                    }
-                ]
+                this.authorityDatas = mockData.authArray;
                 // var that = this;
                 // getRequest("/employee/get/list", this.searchParams).then((res) => {
                 //     this.authorityDatas = res.data.data
@@ -371,7 +308,9 @@
                     authType: "0",
                     authStatus: "1",
                     authIsShow: "1",
-                    collapsed: "1"
+                    collapsed: "1",
+                    parentCode: !!this.currentAuthority ? this.currentAuthority.authcode : null,
+                    level: !!this.currentAuthority ? parseInt(this.currentAuthority.level) + 1 + '' : '0'
                 };
             },
             showEditDialog(index, row) {
@@ -420,43 +359,4 @@
 </script>
 
 <style scoped>
-    .handle-box {
-        margin-bottom: 20px;
-    }
-    .table{
-        width: 100%;
-        font-size: 14px;
-    }
-    .red{
-        color: #ff0000;
-    }
-    .table-wrapper .el-icon-caret-right {
-        display: none;
-    }
-    .table-wrapper .el-icon-caret-bottom {
-        display: none;
-    }
-    .table-tree-icon-file, .table-tree-icon-folder, .table-tree-icon-folder-open {
-        font-family: element-icons!important;
-        speak: none;
-        font-style: normal;
-        font-weight: bolder;
-        font-variant: normal;
-        text-transform: none;
-        line-height: 1;
-        vertical-align: baseline;
-        display: inline-block;
-        -webkit-font-smoothing: antialiased;
-        padding-right: 5px;
-    }
-    .table-tree-icon-file:before {
-        color: transparent;
-        content: '\E60E';
-    }
-    .table-tree-icon-folder:before {
-        content: '\E60E';
-    }
-    .table-tree-icon-folder-open:before {
-        content: '\E60B';
-    }
 </style>

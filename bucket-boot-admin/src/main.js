@@ -38,6 +38,15 @@ Vue.prototype.$message({
 })
 }
 
+Vue.prototype.$mask = (msg) => {
+    const loading = Vue.prototype.$loading({
+        lock: true,
+        text: msg,
+        spinner: 'el-icon-loading'
+      });
+    return loading;
+}
+
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
     const role = localStorage.getItem('ms_username');

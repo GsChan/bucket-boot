@@ -297,27 +297,4 @@
 </script>
 
 <style scoped>
-    .handle-box {
-        margin-bottom: 20px;
-    }
-
-    .handle-select {
-        width: 120px;
-    }
-
-    .handle-input {
-        width: 300px;
-        display: inline-block;
-    }
-    .del-dialog-cnt{
-        font-size: 16px;
-        text-align: center
-    }
-    .table{
-        width: 100%;
-        font-size: 14px;
-    }
-    .red{
-        color: #ff0000;
-    }
 </style>
