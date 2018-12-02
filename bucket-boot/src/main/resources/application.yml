@@ -14,7 +14,7 @@ spring:
           log-slow-sql: true
           slow-sql-millis: 1000
           merge-sql: true
-          #db-type: sqlserver
+          #db-type: mysql
         slf4j:
           enabled: true
           connection-log-enabled: true
@@ -100,3 +100,6 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
+
+logging:
+  config: classpath:log4j2.xml
