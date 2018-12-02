@@ -16,5 +16,31 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserService extends IService<User> {
 
+
     ResultDto queryUserPage(Page<User> page, UserVo userVo);
+
+    /**
+     * 根据id获取用户信息
+     * @param id
+     * @return
+     */
+    User queryUserById(Long id);
+
+    /**
+     * 新增用户信息
+     * @param user
+     */
+    int saveUser(User user);
+
+    /**
+     * 更新用户信息
+     * @param user
+     */
+    int updateUser(User user);
+
+    /**
+     * 根据id删除用户信息
+     * @param id
+     */
+    int deleteUserById(Long id);
 }

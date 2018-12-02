@@ -4,16 +4,28 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.boot.bucket.entity.User">
-        <result column="id" property="id" />
-        <result column="username" property="username" />
+    <result column="id" property="id" />
+        <result column="avatar" property="avatar" />
+        <result column="nick_name" property="nickName" />
+        <result column="user_name" property="userName" />
         <result column="password" property="password" />
+        <result column="status" property="status" />
+        <result column="error_count" property="errorCount" />
+        <result column="lastest_login" property="lastestLogin" />
+        <result column="identity_code" property="identityCode" />
+        <result column="email" property="email" />
+        <result column="cellphone" property="cellphone" />
+        <result column="weixin_code" property="weixinCode" />
+        <result column="is_delete" property="isDelete" />
+        <result column="is_modify" property="isModify" />
+        <result column="create_user" property="createUser" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
 
     <select id="queryUserPage" resultType="com.boot.bucket.entity.User">
 
-        SELECT * FROM sys_user WHERE username like '%${userVo.username}%'
+        SELECT * FROM sys_user WHERE user_name like '%${userVo.userName}%'
 
     </select>
 

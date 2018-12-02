@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-
 /**
  * <p>
  *
@@ -16,8 +15,8 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class UserVo {
+public class RoleVo {
 
-    private String userName;
+    private String roleName;
 
 }

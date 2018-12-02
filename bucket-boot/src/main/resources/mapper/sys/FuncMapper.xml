@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boot.bucket.mapper.FuncMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.boot.bucket.entity.Func">
+        <id column="func_id" property="funcId" />
+        <result column="system_id" property="systemId" />
+        <result column="real_system_id" property="realSystemId" />
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="remark" property="remark" />
+        <result column="url" property="url" />
+        <result column="level" property="level" />
+        <result column="parent_code" property="parentCode" />
+        <result column="sort_id" property="sortId" />
+        <result column="is_valid" property="isValid" />
+        <result column="event_name" property="eventName" />
+        <result column="element_type" property="elementType" />
+        <result column="is_leaf" property="isLeaf" />
+        <result column="is_open" property="isOpen" />
+        <result column="func_seq" property="funcSeq" />
+        <result column="is_visible" property="isVisible" />
+        <result column="old_id" property="oldId" />
+        <result column="menu_url_method" property="menuUrlMethod" />
+    </resultMap>
+
+</mapper>

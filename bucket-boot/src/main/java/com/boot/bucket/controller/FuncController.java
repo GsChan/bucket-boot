@@ -1,15 +1,11 @@
 package com.boot.bucket.controller;
 
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.boot.bucket.common.dto.ResultDto;
-import com.boot.bucket.common.vo.UserVo;
-import com.boot.bucket.entity.User;
-import com.boot.bucket.service.UserService;
+import com.boot.bucket.entity.Func;
+import com.boot.bucket.service.FuncService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,35 +15,35 @@ import org.springframework.web.bind.annotation.*;
  * </p>
  *
  * @author 华仔
- * @since 2018-11-25
+ * @since 2018-12-02
  */
 @RestController
-@RequestMapping("/user")
-public class UserController extends BaseController {
+@RequestMapping("/func")
+public class FuncController extends BaseController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FuncController.class);
 
     @Autowired
-    private UserService userService;
+    private FuncService funcService;
 
     /**
-     * 根据用户id查询用户数据
+     * 根据用户id查询功能数据
      *
      * @param id
      * @return
      */
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<User> queryUserById(@PathVariable("id") Long id) {
+    public ResponseEntity<Func> queryFuncById(@PathVariable("id") Long id) {
 
         try {
-            User user = userService.queryUserById(id);
-            if (null == user) {
+            Func func = funcService.queryFuncById(id);
+            if (null == func) {
                 // 资源不存在，响应404
                 return SERVER_NOT_FOUND;
             }
             // 200
-            return ResponseEntity.ok(user);
+            return ResponseEntity.ok(func);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,16 +52,16 @@ public class UserController extends BaseController {
     }
 
     /**
-     * 新增用户
+     * 新增功能
      *
-     * @param user
+     * @param func
      * @return
      */
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> saveUser(User user) {
+    public ResponseEntity<Void> saveFunc(Func func) {
 
         try {
-            userService.saveUser(user);
+            funcService.saveFunc(func);
             // 204
             return CREATED;
         } catch (Exception e) {
@@ -76,16 +72,16 @@ public class UserController extends BaseController {
     }
 
     /**
-     * 修改用户信息
+     * 修改功能信息
      *
-     * @param user
+     * @param func
      * @return
      */
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<Void> updateUser(User user) {
+    public ResponseEntity<Void> updateFunc(Func func) {
 
         try {
-            userService.updateUser(user);
+            funcService.updateFunc(func);
             // 204
             return SUCCESS_NO_CONTENT;
         } catch (Exception e) {
@@ -96,20 +92,20 @@ public class UserController extends BaseController {
     }
 
     /**
-     * 根据id删除用户
+     * 根据id删除功能
      *
      * @param id
      * @return
      */
     @RequestMapping(method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteUser(@RequestParam(value = "id", defaultValue = "0") Long id) {
+    public ResponseEntity<Void> deleteFunc(@RequestParam(value = "id", defaultValue = "0") Long id) {
 
         try {
             if (id.intValue() == 0) {
                 // 请求参数有误
                 return BAD_REQUEST;
             }
-            userService.deleteUserById(id);
+            funcService.deleteFuncById(id);
             // 204
             return SUCCESS_NO_CONTENT;
         } catch (Exception e) {
@@ -118,11 +114,5 @@ public class UserController extends BaseController {
         // 500
         return SERVER_ERROR;
     }
-
-    @RequestMapping("/page")
-    @ResponseBody
-    public ResultDto queryUser(Page<User> page, UserVo userVo) {
-        return userService.queryUserPage(page, userVo);
-    }
-
+    
 }
