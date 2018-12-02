@@ -7,7 +7,7 @@ spring:
     proxy-target-class: true
   datasource:
     druid:
-      filters: log4j
+      filters: log4j2
       filter:
         stat:
           enabled: true
@@ -100,6 +100,3 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
-
-logging:
-  config: classpath:log4j2.xml

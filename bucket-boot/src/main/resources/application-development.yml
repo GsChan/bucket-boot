@@ -6,7 +6,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/bucket?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
     username: root
-    password: root
+    password:
     ###################以下为druid增加的配置###########################
     druid:
       # 下面为连接池的补充设置，应用到上面所有数据源中
