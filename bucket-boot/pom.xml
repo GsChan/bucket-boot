@@ -122,6 +122,9 @@
             <properties>
                 <env>development</env>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
         <profile>
             <id>debug</id>
