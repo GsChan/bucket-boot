@@ -58,7 +58,7 @@ export default new Router({
             ]
         },
         {
-            path: '/roleManage/assignAuth',
+            path: '/roleManage/assignAuth/:roleId',
             name: '分配权限',
             component: mixin(require('@/components/page/system/assignAuth.vue').default)
         },

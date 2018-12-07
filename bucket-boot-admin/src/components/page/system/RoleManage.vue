@@ -229,7 +229,7 @@
                 });
             },
             toAssignAuth() {
-                this.callNewPage('/roleManage/assignAuth');
+                this.callNewPage(`/roleManage/assignAuth/${this.currentRole.roleId}`);
             }
         }
     }

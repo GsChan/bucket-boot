@@ -1,18 +1,21 @@
 export default {
     roleArray: [
         {
+            "roleId": 1,
             "roleName": "角色01",
             "roleDesc": "角色描述。。。。。。。",
             "roleStatus": "1"
 
         },
         {
+            "roleId": 2,
             "roleName": "角色02",
             "roleDesc": "角色描述。。。。。。。",
             "roleStatus": "0"
 
         },
         {
+            "roleId": 3,
             "roleName": "角色03",
             "roleDesc": "角色描述。。。。。。。",
             "roleStatus": "1"

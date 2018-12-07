@@ -30,7 +30,8 @@
                         :props="defaultProps"
                         ref="authTree"
                         show-checkbox
-                        default-expand-all
+                        :default-expanded-keys="roleAuthArray"
+                        :default-checked-keys="roleAuthArray"
                         node-key="authcode">
                         <div class="custom-tree-node" slot-scope="{ node, data }">
                             <span v-if="data.authStatus === '0'" class="custom-tree-node__disable-label">{{ node.label }}</span>
@@ -52,25 +53,25 @@
 <script>
 
     import {authApi} from '@/service/api'
-    import ElTableTreeColumn  from 'element-tree-grid'
     import mockData from '@/mock/data.js'
 
     export default {
         name: 'authManage',
-        components: {
-            ElTableTreeColumn
-        },
         data() {
             return {
                 defaultProps: {
                     label: "authName",
                     children: "children"
                 },
+                roleId: null,
+                roleAuthArray: [],
                 authorityDatas: []
             }
         },
         created() {
+            this.roleId = this.$route.params.roleId;
             this.getData();
+            this.roleAuthArray = ["100100100", "100100200"];
         },
         computed: {
 
