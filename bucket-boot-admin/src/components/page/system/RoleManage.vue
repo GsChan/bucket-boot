@@ -27,7 +27,7 @@
                         <el-button-group>
                             <el-button type="primary" @click="showAddDialog">新增</el-button>
                             <el-button type="primary" @click="showEditDialog" :disabled="rowSelected">修改</el-button>
-                            <el-button type="primary" @click="showAssignAuthDialog" :disabled="rowSelected">分配权限</el-button>
+                            <el-button type="primary" @click="toAssignAuth" :disabled="rowSelected">分配权限</el-button>
                             <el-button type="danger" @click="alertDelete" :disabled="rowSelected">删除</el-button>
                         </el-button-group>
 
@@ -119,19 +119,6 @@
                 <el-button type="primary" @click="saveRole('addRoleForm')">提 交</el-button>
             </span>
         </el-dialog>
-
-        <!-- 分配权限模拟弹出框 -->
-        <el-dialog :visible.sync="authVisible" @closed="cancelAssignAuthRole" width="30%">
-            <div slot="title" class="admin-dialog__title">
-                <h2>分配权限</h2>
-            </div>
-
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="cancelAssignAuthRole">取 消</el-button>
-                <el-button type="primary" @click="assignAuth">提 交</el-button>
-            </span>
-        </el-dialog>
-
     </div>
 </template>
 
@@ -155,7 +142,6 @@
                 },
                 addVisible: false,
                 editVisible: false,
-                authVisible: false,
                 roleForm: {
                 },
                 roleValdateRules: {
@@ -206,17 +192,11 @@
                 this.editVisible = true;
                 this.roleForm = Object.assign({}, this.currentRole);
             },
-            showAssignAuthDialog() {
-                this.authVisible = true;
-            },
             cancelAddRole() {
                 this.addVisible = false;
             },
             cancelEditRole() {
                 this.editVisible = false;
-            },
-            cancelAssignAuthRole() {
-                this.authVisible = false;
             },
             // 保存新增
             saveRole(formName) {
@@ -248,7 +228,8 @@
                     // 取消删除
                 });
             },
-            assignAuth() {
+            toAssignAuth() {
+                this.callNewPage('/roleManage/assignAuth');
             }
         }
     }
