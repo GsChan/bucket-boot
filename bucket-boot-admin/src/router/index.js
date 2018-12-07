@@ -63,6 +63,11 @@ export default new Router({
             component: mixin(require('@/components/page/system/assignAuth.vue').default)
         },
         {
+            path: '/employeeManage/assignAuth/:employeeId',
+            name: '分配权限',
+            component: mixin(require('@/components/page/system/assignEmployeeAuth.vue').default)
+        },
+        {
             path: '*',
             name: '*',
             redirect: '/404'

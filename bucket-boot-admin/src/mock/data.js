@@ -1,4 +1,45 @@
 export default {
+    employeeArray: [
+        {
+            empId: 1,
+            loginName: 'liwq01',
+            empNo: '10001',
+            empName: '李四',
+            sex: '0',
+            tel: '13806061407',
+            email: '123@qq.com',
+            empStatus: '1',
+            isFrozen: '1',
+            createTime: '2018-07-01 10:00:00',
+            updateTime: '2018-07-01 10:00:00'
+        },
+        {
+            empId: 2,
+            loginName: 'liwq02',
+            empNo: '10002',
+            empName: '李四2',
+            sex: '0',
+            tel: '13806061402',
+            email: '122@qq.com',
+            empStatus: '1',
+            isFrozen: '1',
+            createTime: '2018-07-01 10:00:00',
+            updateTime: '2018-07-01 10:00:00'
+        },
+        {
+            empId: 3,
+            loginName: 'liwq03',
+            empNo: '10003',
+            empName: '李四3',
+            sex: '1',
+            tel: '13806061437',
+            email: '133@qq.com',
+            empStatus: '1',
+            isFrozen: '1',
+            createTime: '2018-07-01 10:00:00',
+            updateTime: '2018-07-01 10:00:00'
+        }
+    ],
     roleArray: [
         {
             "roleId": 1,

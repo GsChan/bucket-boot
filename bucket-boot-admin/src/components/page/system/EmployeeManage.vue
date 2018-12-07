@@ -27,6 +27,7 @@
                         <el-button-group>
                             <el-button type="primary" @click="showAddDialog">新增</el-button>
                             <el-button type="primary" @click="showEditDialog" :disabled="rowSelected">修改</el-button>
+                            <el-button type="primary" @click="toAssignAuth" :disabled="rowSelected">分配权限</el-button>
                             <el-button type="danger" @click="alertDelete" :disabled="rowSelected">删除</el-button>
                         </el-button-group>
 
@@ -165,6 +166,7 @@
 <script>
 
     import {employeeApi} from '@/service/api.js'
+    import mockData from '@/mock/data'
 
     export default {
         name: 'employeeManage',
@@ -232,14 +234,16 @@
             },
             // 获取 列表
             getData() {
+                this.employeeDatas = mockData.employeeArray;
                 var that = this;
-                employeeApi.getEmployees(this.searchParams).then((res) => {
-                    this.employeeDatas = res.data.data
-                    this.total = res.data.total
-                })
-                .catch(function (error) {
-                    that.$message.error('获取员工列表失败')
-                })
+
+                // employeeApi.getEmployees(this.searchParams).then((res) => {
+                //     this.employeeDatas = res.data.data
+                //     this.total = res.data.total
+                // })
+                // .catch(function (error) {
+                //     that.$message.error('获取员工列表失败')
+                // })
             },
             search() {
                 this.getData();
@@ -257,6 +261,9 @@
             },
             cancelEditEmployee() {
                 this.editVisible = false;
+            },
+            toAssignAuth() {
+                this.callNewPage(`/employeeManage/assignAuth/${this.currentEmployee.empId}`);
             },
             // 保存新增
             saveEmployee(formName) {
