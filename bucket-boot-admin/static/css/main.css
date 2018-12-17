@@ -1,0 +1,256 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body,
+#app,
+.wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'PingFang SC', "Helvetica Neue", Helvetica, "microsoft yahei", arial, STHeiTi, sans-serif;
+}
+
+a {
+    text-decoration: none
+}
+
+
+.content-box {
+    position: absolute;
+    left: 250px;
+    right: 0;
+    top: 70px;
+    bottom: 0;
+    padding-bottom: 30px;
+    -webkit-transition: left .3s ease-in-out;
+    transition: left .3s ease-in-out;
+    background: #f0f0f0;
+}
+
+.content {
+    width: auto;
+    height: 100%;
+    padding: 10px;
+    overflow-y: scroll;
+    box-sizing: border-box;
+}
+
+.content-collapse {
+    left: 65px;
+}
+
+.container {
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.crumbs {
+    margin: 10px 0;
+}
+
+.pagination {
+    margin: 20px 0;
+    text-align: right;
+}
+
+.plugins-tips {
+    padding: 20px 10px;
+    margin-bottom: 20px;
+}
+
+.el-button+.el-tooltip {
+    margin-left: 10px;
+}
+
+.el-table tr:hover {
+    background: #f6faff;
+}
+
+.mgb20 {
+    margin-bottom: 20px;
+}
+
+.move-enter-active,
+.move-leave-active {
+    transition: opacity .5s;
+}
+
+.move-enter,
+.move-leave {
+    opacity: 0;
+}
+
+/*BaseForm*/
+
+.form-box {
+    width: 600px;
+}
+
+.form-box .line {
+    text-align: center;
+}
+
+.el-time-panel__content::after,
+.el-time-panel__content::before {
+    margin-top: -7px;
+}
+
+.el-time-spinner__wrapper .el-scrollbar__wrap:not(.el-scrollbar__wrap--hidden-default) {
+    padding-bottom: 0;
+}
+
+/*Upload*/
+
+.pure-button {
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.g-core-image-corp-container .info-aside {
+    height: 45px;
+}
+
+.el-upload--text {
+    background-color: #fff;
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    box-sizing: border-box;
+    width: 360px;
+    height: 180px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.el-upload--text .el-icon-upload {
+    font-size: 67px;
+    color: #97a8be;
+    margin: 40px 0 16px;
+    line-height: 50px;
+}
+
+.el-upload--text {
+    color: #97a8be;
+    font-size: 14px;
+    text-align: center;
+}
+
+.el-upload--text em {
+    font-style: normal;
+}
+
+/*VueEditor*/
+
+.ql-container {
+    min-height: 400px;
+}
+
+.ql-snow .ql-tooltip {
+    transform: translateX(117.5px) translateY(10px) !important;
+}
+
+.editor-btn {
+    margin-top: 20px;
+}
+
+/*markdown*/
+
+.v-note-wrapper .v-note-panel {
+    min-height: 500px;
+}
+
+.hiddenOverText {
+    max-height: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    line-height: 23px;
+}
+.overText {
+    position: absolute;
+    bottom: 0px;
+    content: '...';
+    right: -8px;
+}
+.noText {
+    width: 100% !important;
+}
+.content .table-wrapper {
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0 2px 3px 0 #ddd;
+}
+.pagination {
+    text-align: left;
+}
+.el-dialog__body {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.admin-dialog__title {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+.admin-dialog__title h2 {
+    color: #409eff;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: bolder;
+    border-left: 2px solid #409eff;
+    padding-left: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+.handle-box {
+    margin-bottom: 20px;
+}
+.table{
+    width: 100%;
+    font-size: 14px;
+}
+.table-wrapper .el-icon-caret-right {
+    display: none;
+}
+.table-wrapper .el-icon-caret-bottom {
+    display: none;
+}
+.table-tree-icon-file, .table-tree-icon-folder, .table-tree-icon-folder-open {
+    font-family: element-icons!important;
+    speak: none;
+    font-style: normal;
+    font-weight: bolder;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: baseline;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    padding-right: 5px;
+}
+.table-tree-icon-file:before {
+    color: transparent;
+    content: '\E60E';
+}
+.table-tree-icon-folder:before {
+    content: '\E60E';
+}
+.table-tree-icon-folder-open:before {
+    content: '\E60B';
+}
