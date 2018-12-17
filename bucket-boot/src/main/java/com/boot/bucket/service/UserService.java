@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- *  服务类
+ *  系统用户 服务类
  * </p>
  *
  * @author 华仔
@@ -43,4 +43,11 @@ public interface UserService extends IService<User> {
      * @param id
      */
     int deleteUserById(Long id);
+
+    /**
+     * 根据userName获取用户信息
+     * @param userName
+     * @return
+     */
+    User getByUserName(String userName);
 }

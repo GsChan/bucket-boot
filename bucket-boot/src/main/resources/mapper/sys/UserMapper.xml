@@ -9,6 +9,7 @@
         <result column="nick_name" property="nickName" />
         <result column="user_name" property="userName" />
         <result column="password" property="password" />
+        <result column="salt" property="salt" />
         <result column="status" property="status" />
         <result column="error_count" property="errorCount" />
         <result column="lastest_login" property="lastestLogin" />

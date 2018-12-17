@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- * 前端控制器
+ * 系统功能 前端控制器
  * </p>
  *
  * @author 华仔
@@ -33,7 +33,6 @@ public class FuncController extends BaseController {
      * @return
      */
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    @ResponseBody
     public ResponseEntity<Func> queryFuncById(@PathVariable("id") Long id) {
 
         try {

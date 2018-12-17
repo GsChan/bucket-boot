@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- * 前端控制器
+ * 系统用户 前端控制器
  * </p>
  *
  * @author 华仔
@@ -37,7 +37,6 @@ public class UserController extends BaseController {
      * @return
      */
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    @ResponseBody
     public ResponseEntity<User> queryUserById(@PathVariable("id") Long id) {
 
         try {
@@ -120,7 +119,6 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping("/page")
-    @ResponseBody
     public ResultDto queryUser(Page<User> page, UserVo userVo) {
         return userService.queryUserPage(page, userVo);
     }

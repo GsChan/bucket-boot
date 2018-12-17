@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ *  系统用户 Mapper 接口
  * </p>
  *
  * @author 华仔

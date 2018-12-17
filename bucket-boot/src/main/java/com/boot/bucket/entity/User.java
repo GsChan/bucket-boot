@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 系统用户表
+ * 系统用户
  * </p>
  *
  * @author 华仔
@@ -52,6 +52,11 @@ public class User extends Model<User> {
      * 密码
      */
     private String password;
+
+    /**
+     * 盐
+     */
+    private String salt;
 
     /**
      * 0:正常，1:挂起，2:注销，3:锁定

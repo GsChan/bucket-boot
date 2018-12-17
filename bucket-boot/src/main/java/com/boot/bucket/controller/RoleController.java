@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- * 系统角色表 前端控制器
+ * 系统角色 前端控制器
  * </p>
  *
  * @author 华仔
@@ -33,7 +33,6 @@ public class RoleController extends BaseController {
      * @return
      */
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    @ResponseBody
     public ResponseEntity<Role> queryRoleById(@PathVariable("id") Long id) {
 
         try {

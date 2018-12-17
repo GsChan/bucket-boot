@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 系统角色表
+ * 系统角色
  * </p>
  *
  * @author 华仔
@@ -27,6 +27,9 @@ public class Role extends Model<Role> {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 主键
+     */
     @TableId(value = "ID", type = IdType.AUTO)
     private Long id;
 

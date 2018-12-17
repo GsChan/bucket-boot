@@ -1,5 +1,6 @@
 package com.boot.bucket.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.boot.bucket.common.dto.ResultDto;
 import com.boot.bucket.common.vo.UserVo;
@@ -16,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
- *  服务实现类
+ *  系统用户 服务实现类
  * </p>
  *
  * @author 华仔
@@ -55,6 +56,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public int deleteUserById(Long id) {
         return userMapper.deleteById(id);
+    }
+
+    @Override
+    public User getByUserName(String userName) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("userName", userName);
+        return userMapper.selectOne(queryWrapper);
     }
 
 }
